@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PL-400: Introduction to Developing with Power Platform</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+        
+        body {
+            font-family: 'Indie Flower', cursive;
+            background-color: #f0f7ff;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid #4a86e8;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px dashed #4a86e8;
+            padding-bottom: 15px;
+        }
+        
+        h1 {
+            font-family: 'Gochi Hand', cursive;
+            color: #2c5aa0;
+            margin: 0;
+            font-size: 2.8rem;
+        }
+        
+        h2 {
+            font-family: 'Gochi Hand', cursive;
+            color: #2c5aa0;
+            border-bottom: 2px dotted #4a86e8;
+            padding-bottom: 5px;
+            margin-top: 25px;
+        }
+        
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .module {
+            background: #e6f2ff;
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid #a4c2f4;
+            position: relative;
+        }
+        
+        .module h3 {
+            margin-top: 0;
+            color: #2c5aa0;
+            font-family: 'Gochi Hand', cursive;
+        }
+        
+        .module-number {
+            position: absolute;
+            top: -15px;
+            right: -10px;
+            background: #ff6b6b;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-family: 'Gochi Hand', cursive;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        ul {
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .hand-drawn {
+            border: none;
+            background: transparent;
+            font-family: 'Indie Flower', cursive;
+        }
+        
+        .key-points {
+            background: #fff2cc;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 2px dashed #ffd966;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .icon {
+            font-size: 1.5rem;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        
+        .dev-tools {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .tool {
+            background: #d5e8d4;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 10px;
+            flex: 1;
+            min-width: 200px;
+            border: 2px solid #82b366;
+        }
+        
+        .tool h3 {
+            margin-top: 0;
+            color: #2c5aa0;
+            font-family: 'Gochi Hand', cursive;
+        }
+        
+        .api-section {
+            background: #e2d0e6;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 2px solid #9673a6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>PL-400: Introduction to Developing with Power Platform</h1>
+            <p class="hand-drawn">Microsoft Power Platform Developer</p>
+        </div>
+        
+        <div class="key-points">
+            <h2 class="hand-drawn">Key Learning Objectives</h2>
+            <ul>
+                <li><span class="icon">🧩</span> Understand Power Platform solution components</li>
+                <li><span class="icon">🔧</span> Master developer tools for Power Platform</li>
+                <li><span class="icon">⚡</span> Learn extensibility options and patterns</li>
+                <li><span class="icon">🔌</span> Work with Dataverse APIs (Web API & Organization Service)</li>
+                <li><span class="icon">🤖</span> Utilize GitHub Copilot for development</li>
+                <li><span class="icon">⚖️</span> Determine when to configure vs. when to code</li>
+            </ul>
+        </div>
+        
+        <h2>Developer Tools</h2>
+        <div class="dev-tools">
+            <div class="tool">
+                <h3>Power Apps CLI</h3>
+                <p>Create and manage code components</p>
+            </div>
+            <div class="tool">
+                <h3>Configuration Migration Tool</h3>
+                <p>Move configuration data across environments</p>
+            </div>
+            <div class="tool">
+                <h3>Plugin Registration Tool</h3>
+                <p>Register custom plugins and steps</p>
+            </div>
+            <div class="tool">
+                <h3>Solution Packager</h3>
+                <p>Manage solutions in source control</p>
+            </div>
+            <div class="tool">
+                <h3>GitHub Copilot</h3>
+                <p>AI-powered coding assistant</p>
+            </div>
+        </div>
+        
+        <h2>Course Modules</h2>
+        <div class="modules-grid">
+            <div class="module">
+                <div class="module-number">1</div>
+                <h3>Power Platform Developer Resources</h3>
+                <ul>
+                    <li>Solution components overview</li>
+                    <li>Dataverse and Common Data Model</li>
+                    <li>Azure integration elements</li>
+                    <li>Developer documentation and samples</li>
+                </ul>
+            </div>
+            
+            <div class="module">
+                <div class="module-number">2</div>
+                <h3>Developer Tools</h3>
+                <ul>
+                    <li>Power Platform CLI</li>
+                    <li>Configuration Migration Tool</li>
+                    <li>Package Deployer</li>
+                    <li>Plugin Registration Tool</li>
+                    <li>GitHub Copilot integration</li>
+                </ul>
+            </div>
+            
+            <div class="module">
+                <div class="module-number">3</div>
+                <h3>Extending Power Platform</h3>
+                <ul>
+                    <li>Extensibility architecture</li>
+                    <li>Power Apps Component Framework (PCF)</li>
+                    <li>Client scripting with JavaScript</li>
+                    <li>Plugin development</li>
+                    <li>Custom APIs</li>
+                    <li>Configuration vs. code decisions</li>
+                </ul>
+            </div>
+            
+            <div class="module">
+                <div class="module-number">4</div>
+                <h3>Dataverse APIs</h3>
+                <ul>
+                    <li>Web API vs. Organization Service</li>
+                    <li>OData queries and operations</li>
+                    <li>Authentication with OAuth</li>
+                    <li>Early-bound vs. late-bound programming</li>
+                    <li>Batching and concurrency</li>
+                    <li>API limits and optimization</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="api-section">
+            <h2 class="hand-drawn">Dataverse API Options</h2>
+            <ul>
+                <li><strong>Web API</strong> - RESTful OData v4 endpoint for cross-platform development</li>
+                <li><strong>Organization Service</strong> - .NET SDK for plugins and Windows applications</li>
+                <li><strong>FetchXML</strong> - Proprietary query language for complex operations</li>
+                <li><strong>Early-bound</strong> - Compile-time validation with generated classes</li>
+                <li><strong>Late-bound</strong> - Runtime flexibility with string references</li>
+            </ul>
+        </div>
+        
+        <div class="key-points">
+            <h2 class="hand-drawn">Configuration vs. Code Decision Factors</h2>
+            <ul>
+                <li><span class="icon">🔄</span> Business rules vs. client scripting</li>
+                <li><span class="icon">⚡</span> Power Automate flows vs. plugins</li>
+                <li><span class="icon">🔧</span> Maintainability and upgradability</li>
+                <li><span class="icon">🚀</span> Performance requirements</li>
+                <li><span class="icon">👥</span> Organization capabilities and resources</li>
+                <li><span class="icon">💼</span> Out-of-the-box functionality availability</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>Microsoft Power Platform Developer | PL-400T00</p>
+        </div>
+    </div>
+</body>
+</html>

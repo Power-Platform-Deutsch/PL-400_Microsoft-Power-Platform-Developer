@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PL-400: Dataverse & Model-Driven Apps Summary</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+        
+        body {
+            font-family: 'Indie Flower', cursive;
+            background-color: #f0f7ff;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid #4a86e8;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px dashed #4a86e8;
+            padding-bottom: 15px;
+        }
+        
+        h1 {
+            font-family: 'Gochi Hand', cursive;
+            color: #2c5aa0;
+            margin: 0;
+            font-size: 2.8rem;
+        }
+        
+        h2 {
+            font-family: 'Gochi Hand', cursive;
+            color: #2c5aa0;
+            border-bottom: 2px dotted #4a86e8;
+            padding-bottom: 5px;
+            margin-top: 25px;
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .summary-card {
+            background: #e6f2ff;
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid #a4c2f4;
+            position: relative;
+        }
+        
+        .summary-card h3 {
+            margin-top: 0;
+            color: #2c5aa0;
+            font-family: 'Gochi Hand', cursive;
+            border-bottom: 1px dashed #4a86e8;
+            padding-bottom: 5px;
+        }
+        
+        .hand-drawn {
+            border: none;
+            background: transparent;
+            font-family: 'Indie Flower', cursive;
+        }
+        
+        .sketchy-box {
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 3px 3px 0px #333;
+            background: #fff;
+        }
+        
+        .icon {
+            font-size: 1.5rem;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #666;
+            border-top: 2px dashed #4a86e8;
+            padding-top: 15px;
+        }
+        
+        .connector {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: #ffd966;
+            border: 2px solid #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            top: -15px;
+            right: -15px;
+            box-shadow: 2px 2px 0px #333;
+        }
+        
+        .highlight {
+            background: #fff2cc;
+            padding: 3px 6px;
+            border-radius: 4px;
+            border: 1px dashed #ffd966;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>PL-400: Dataverse & Model-Driven Apps</h1>
+            <p class="hand-drawn">One-Page Excalidraw Style Summary</p>
+        </div>
+        
+        <div class="summary-grid">
+            <div class="summary-card">
+                <span class="connector">1</span>
+                <h3>Dataverse Fundamentals</h3>
+                <p><span class="icon">🏗️</span> Cloud-based data platform with automatic scaling</p>
+                <p><span class="icon">📊</span> Standard & custom tables with rich column types</p>
+                <p><span class="icon">🔗</span> Relationship types: 1:N, N:N, Connections</p>
+                <p><span class="icon">🧮</span> Calculated & rollup columns (read-only)</p>
+                <p><span class="icon">📝</span> Business rules for logic without code</p>
+                <p><span class="icon">🔐</span> Role-based security with row/column level controls</p>
+            </div>
+            
+            <div class="summary-card">
+                <span class="connector">2</span>
+                <h3>Model-Driven Apps</h3>
+                <p><span class="icon">🎯</span> Data-centric apps with responsive UI</p>
+                <p><span class="icon">⚙️</span> Component-based approach (forms, views, charts)</p>
+                <p><span class="icon">📱</span> Consistent experience across devices</p>
+                <p><span class="icon">🔌</span> Powered by Microsoft Dataverse</p>
+                <p><span class="icon">🔄</span> Multiple makers can work simultaneously</p>
+                <p><span class="icon">📦</span> Distributed as solutions</p>
+            </div>
+            
+            <div class="summary-card">
+                <span class="connector">3</span>
+                <h3>Form Configuration</h3>
+                <p><span class="icon">📋</span> Form types: Main, Quick View, Quick Create, Card</p>
+                <p><span class="icon">🏗️</span> Structure: Tabs → Sections → Controls</p>
+                <p><span class="icon">✨</span> Specialized components: Timeline, Sub-grid, Quick view</p>
+                <p><span class="icon">⚡</span> Reference panel for related data context</p>
+                <p><span class="icon">⏱️</span> Timer control for time-based milestones</p>
+                <p><span class="icon">🌐</span> iFrames for external website integration</p>
+            </div>
+            
+            <div class="summary-card">
+                <span class="connector">4</span>
+                <h3>Views & Navigation</h3>
+                <p><span class="icon">👀</span> Public views (managed by makers)</p>
+                <p><span class="icon">👤</span> Personal views (created by users)</p>
+                <p><span class="icon">🔍</span> Specialty views: Lookup, Associated, Quick Find, Advanced Find</p>
+                <p><span class="icon">🗺️</span> Site map defines app navigation</p>
+                <p><span class="icon">📊</span> Charts & dashboards for data visualization</p>
+                <p><span class="icon">📈</span> Power BI integration for advanced analytics</p>
+            </div>
+            
+            <div class="summary-card">
+                <span class="connector">5</span>
+                <h3>Command Bar</h3>
+                <p><span class="icon">📍</span> Locations: Main grid, Form, Subgrid, Associated view</p>
+                <p><span class="icon">🔄</span> Actions implemented with Power Fx or JavaScript</p>
+                <p><span class="icon">👁️</span> Visibility control based on conditions</p>
+                <p><span class="icon">🎨</span> Visual designer for easy customization</p>
+                <p><span class="icon">⚡</span> OnSelect property for action logic</p>
+                <p><span class="icon">👥</span> Context-aware (selected items/rows)</p>
+            </div>
+            
+            <div class="summary-card">
+                <span class="connector">6</span>
+                <h3>Performance Optimization</h3>
+                <p><span class="icon">⚖️</span> Balance functionality vs performance</p>
+                <p><span class="icon">📱</span> Design focused apps vs monolithic ones</p>
+                <p><span class="icon">👁️</span> Limit form columns to essential information</p>
+                <p><span class="icon">🔍</span> Optimize Quick Find columns for search</p>
+                <p><span class="icon">📊</span> Use analytics (PPAC) to identify issues</p>
+                <p><span class="icon">⏱️</span> Monitor plugin/workflow execution times</p>
+            </div>
+        </div>
+        
+        <div class="sketchy-box">
+            <h3 class="hand-drawn">Key Connections</h3>
+            <p><span class="highlight">Dataverse</span> provides the data foundation for <span class="highlight">model-driven apps</span></p>
+            <p><span class="highlight">Forms & views</span> determine how users interact with Dataverse data</p>
+            <p><span class="highlight">Command bars</span> enable actions on data in context</p>
+            <p><span class="highlight">Security roles</span> control access to apps and data</p>
+            <p>All customizations are packaged in <span class="highlight">solutions</span> for deployment</p>
+        </div>
+        
+        <div class="footer">
+            <p>Microsoft Power Platform Developer | PL-400T00 | Combined Summary: Dataverse & Model-Driven Apps</p>
+        </div>
+    </div>
+</body>
+</html>

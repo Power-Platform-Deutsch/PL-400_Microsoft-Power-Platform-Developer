@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PL-400: Power Apps Component Framework</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+        
+        body {
+            font-family: 'Indie Flower', cursive;
+            background-color: #f0f7ff;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid #4a86e8;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px dashed #4a86e8;
+            padding-bottom: 15px;
+        }
+        
+        h1 {
+            font-family: 'Gochi Hand', cursive;
+            color: #2c5aa0;
+            margin: 0;
+            font-size: 2.8rem;
+        }
+        
+        h2 {
+            font-family: 'Gochi Hand', cursive;
+            color: #2c5aa0;
+            border-bottom: 2px dotted #4a86e8;
+            padding-bottom: 5px;
+            margin-top: 25px;
+        }
+        
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .module {
+            background: #e6f2ff;
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid #a4c2f4;
+            position: relative;
+        }
+        
+        .module h3 {
+            margin-top: 0;
+            color: #2c5aa0;
+            font-family: 'Gochi Hand', cursive;
+        }
+        
+        .module-number {
+            position: absolute;
+            top: -15px;
+            right: -10px;
+            background: #ff6b6b;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-family: 'Gochi Hand', cursive;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        ul {
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .hand-drawn {
+            border: none;
+            background: transparent;
+            font-family: 'Indie Flower', cursive;
+        }
+        
+        .key-points {
+            background: #fff2cc;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 2px dashed #ffd966;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .icon {
+            font-size: 1.5rem;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        
+        .events-section {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .event {
+            background: #d5e8d4;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 10px;
+            flex: 1;
+            min-width: 200px;
+            border: 2px solid #82b366;
+        }
+        
+        .event h3 {
+            margin-top: 0;
+            color: #2c5aa0;
+            font-family: 'Gochi Hand', cursive;
+        }
+        
+        .comparison {
+            background: #e2d0e6;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 2px solid #9673a6;
+        }
+        
+        .lifecycle {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .lifecycle-step {
+            background: #ffd8cc;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 10px;
+            flex: 1;
+            min-width: 200px;
+            border: 2px solid #ff9d7a;
+            text-align: center;
+        }
+        
+        .lifecycle-step h3 {
+            margin-top: 0;
+            color: #2c5aa0;
+            font-family: 'Gochi Hand', cursive;
+        }
+        
+        .component-types {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .component-type {
+            background: #d4e6f1;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 10px;
+            flex: 1;
+            min-width: 200px;
+            border: 2px solid #85c1e9;
+        }
+        
+        .component-type h3 {
+            margin-top: 0;
+            color: #2c5aa0;
+            font-family: 'Gochi Hand', cursive;
+        }
+        
+        .tool-list {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .tool {
+            background: #d5f5e3;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 10px;
+            flex: 1;
+            min-width: 200px;
+            border: 2px solid #58d68d;
+            text-align: center;
+        }
+        
+        .tool h3 {
+            margin-top: 0;
+            color: #2c5aa0;
+            font-family: 'Gochi Hand', cursive;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>PL-400: Power Apps Component Framework</h1>
+            <p class="hand-drawn">Session 05: Create Code Components with PCF</p>
+        </div>
+        
+        <div class="key-points">
+            <h2 class="hand-drawn">Key Learning Objectives</h2>
+            <ul>
+                <li><span class="icon">🏗️</span> Understand PCF architecture and components</li>
+                <li><span class="icon">🧩</span> Create reusable code components with HTML, CSS & TypeScript</li>
+                <li><span class="icon">🔄</span> Implement component lifecycle methods</li>
+                <li><span class="icon">🛠️</span> Use Power Apps CLI for component development</li>
+                <li><span class="icon">🔒</span> Apply security best practices for PCF components</li>
+                <li><span class="icon">🧪</span> Test and debug code components</li>
+            </ul>
+        </div>
+        
+        <h2>What are PCF Code Components?</h2>
+        <div class="component-types">
+            <div class="component-type">
+                <h3>Field Components</h3>
+                <p>Custom controls for a column on a form (e.g., slider instead of text box)</p>
+            </div>
+            <div class="component-type">
+                <h3>Dataset Components</h3>
+                <p>Custom grids to display data in tabular format (e.g., daily scheduler)</p>
+            </div>
+            <div class="component-type">
+                <h3>External Service Components</h3>
+                <p>Components that display content from external services</p>
+            </div>
+        </div>
+        
+        <h2>Component Lifecycle Methods</h2>
+        <div class="lifecycle">
+            <div class="lifecycle-step">
+                <h3>init()</h3>
+                <p>Initializes component instance, starts remote calls</p>
+            </div>
+            <div class="lifecycle-step">
+                <h3>updateView()</h3>
+                <p>Called when property values change</p>
+            </div>
+            <div class="lifecycle-step">
+                <h3>getOutputs()</h3>
+                <p>Returns values before new data receipt (optional)</p>
+            </div>
+            <div class="lifecycle-step">
+                <h3>destroy()</h3>
+                <p>Cleans up when component is removed from DOM</p>
+            </div>
+        </div>
+        
+        <h2>PCF Development Tools</h2>
+        <div class="tool-list">
+            <div class="tool">
+                <h3>Power Apps CLI</h3>
+                <p>Scaffolding and build commands</p>
+            </div>
+            <div class="tool">
+                <h3>Node.js & npm</h3>
+                <p>Runtime and package management</p>
+            </div>
+            <div class="tool">
+                <h3>Visual Studio Code</h3>
+                <p>Recommended IDE</p>
+            </div>
+            <div class="tool">
+                <h3>XrmToolBox</h3>
+                <p>PCF Builder tool</p>
+            </div>
+        </div>
+        
+        <div class="comparison">
+            <h2 class="hand-drawn">PCF Advantages</h2>
+            <ul>
+                <li>Access to framework APIs for lifecycle management, contextual data, and metadata</li>
+                <li>Support for React, AngularJS and other client frameworks</li>
+                <li>Seamless server access through Web API</li>
+                <li>Access to device features (camera, location, microphone)</li>
+                <li>Responsive design for any screen size or device</li>
+                <li>Bundle all files into a single solution package</li>
+            </ul>
+        </div>
+        
+        <div class="key-points">
+            <h2 class="hand-drawn">Security Considerations</h2>
+            <ul>
+                <li><span class="icon">🔐</span> Components execute in user context with their permissions</li>
+                <li><span class="icon">👥</span> Configure custom security roles with precise privileges</li>
+                <li><span class="icon">🌐</span> Power Pages sites require Web roles and Table permissions</li>
+                <li><span class="icon">⚖️</span> Consider privilege types (Create, Read, Update, Delete, etc.)</li>
+                <li><span class="icon">📊</span> Determine appropriate depth (User vs Organization level)</li>
+            </ul>
+        </div>
+        
+        <h2>Practice Lab: Component Framework</h2>
+        <div class="module">
+            <h3>Lab 7: Power Apps Component Framework</h3>
+            <ul>
+                <li>Develop a custom component control using PCF</li>
+                <li>Create a permit inspection history timeline visualization</li>
+                <li>Use framework interfaces to interact with hosting form data</li>
+                <li>Implement with a community timeline library</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>Microsoft Power Platform Developer | PL-400T00 | Session 05</p>
+        </div>
+    </div>
+</body>
+</html>

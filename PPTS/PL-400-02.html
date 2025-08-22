@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PL-400: Automate Business Processes with Power Automate</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+        
+        body {
+            font-family: 'Indie Flower', cursive;
+            background-color: #f0f7ff;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid #4a86e8;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px dashed #4a86e8;
+            padding-bottom: 15px;
+        }
+        
+        h1 {
+            font-family: 'Gochi Hand', cursive;
+            color: #2c5aa0;
+            margin: 0;
+            font-size: 2.8rem;
+        }
+        
+        h2 {
+            font-family: 'Gochi Hand', cursive;
+            color: #2c5aa0;
+            border-bottom: 2px dotted #4a86e8;
+            padding-bottom: 5px;
+            margin-top: 25px;
+        }
+        
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .module {
+            background: #e6f2ff;
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid #a4c2f4;
+            position: relative;
+        }
+        
+        .module h3 {
+            margin-top: 0;
+            color: #2c5aa0;
+            font-family: 'Gochi Hand', cursive;
+        }
+        
+        .module-number {
+            position: absolute;
+            top: -15px;
+            right: -10px;
+            background: #ff6b6b;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-family: 'Gochi Hand', cursive;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        ul {
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .hand-drawn {
+            border: none;
+            background: transparent;
+            font-family: 'Indie Flower', cursive;
+        }
+        
+        .key-points {
+            background: #fff2cc;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 2px dashed #ffd966;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .icon {
+            font-size: 1.5rem;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        
+        .flow-types {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .flow-type {
+            background: #d5e8d4;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 10px;
+            flex: 1;
+            min-width: 200px;
+            border: 2px solid #82b366;
+        }
+        
+        .flow-type h3 {
+            margin-top: 0;
+            color: #2c5aa0;
+            font-family: 'Gochi Hand', cursive;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>PL-400: Automate Business Processes with Power Automate</h1>
+            <p class="hand-drawn">Microsoft Power Platform Developer</p>
+        </div>
+        
+        <div class="key-points">
+            <h2 class="hand-drawn">Key Learning Objectives</h2>
+            <ul>
+                <li><span class="icon">⚡</span> Create and manage different types of cloud flows</li>
+                <li><span class="icon">🔌</span> Work with Dataverse triggers and actions</li>
+                <li><span class="icon">🧩</span> Use expressions for data manipulation</li>
+                <li><span class="icon">🛡️</span> Implement error handling and security features</li>
+                <li><span class="icon">🤖</span> Leverage Copilot for flow creation</li>
+                <li><span class="icon">🔀</span> Integrate flows with Power Apps and business processes</li>
+            </ul>
+        </div>
+        
+        <h2>Power Automate Flow Types</h2>
+        <div class="flow-types">
+            <div class="flow-type">
+                <h3>Automated Flows</h3>
+                <p>Triggered by events like new data creation</p>
+            </div>
+            <div class="flow-type">
+                <h3>Instant Flows</h3>
+                <p>Manually triggered with button clicks</p>
+            </div>
+            <div class="flow-type">
+                <h3>Scheduled Flows</h3>
+                <p>Run at specific times or intervals</p>
+            </div>
+            <div class="flow-type">
+                <h3>Business Process Flows</h3>
+                <p>Guide users through process stages</p>
+            </div>
+            <div class="flow-type">
+                <h3>Desktop Flows</h3>
+                <p>Automate desktop applications</p>
+            </div>
+        </div>
+        
+        <h2>Course Modules</h2>
+        <div class="modules-grid">
+            <div class="module">
+                <div class="module-number">1</div>
+                <h3>Get Started with Power Automate</h3>
+                <ul>
+                    <li>Flow concepts: triggers and actions</li>
+                    <li>Creating automated and instant flows</li>
+                    <li>Building purchase order approval flows</li>
+                    <li>Dynamic content and data handling</li>
+                </ul>
+            </div>
+            
+            <div class="module">
+                <div class="module-number">2</div>
+                <h3>Expressions in Power Automate</h3>
+                <ul>
+                    <li>Function categories and usage</li>
+                    <li>String manipulation functions</li>
+                    <li>Data conversion and calculations</li>
+                    <li>Working with dates and collections</li>
+                </ul>
+            </div>
+            
+            <div class="module">
+                <div class="module-number">3</div>
+                <h3>Dataverse Triggers & Actions</h3>
+                <ul>
+                    <li>Dataverse connector types</li>
+                    <li>Triggers for data changes</li>
+                    <li>Scope configuration for triggers</li>
+                    <li>Filtering update triggers</li>
+                    <li>Querying and modifying data</li>
+                </ul>
+            </div>
+            
+            <div class="module">
+                <div class="module-number">4</div>
+                <h3>Advanced Cloud Flow Features</h3>
+                <ul>
+                    <li>Handling sensitive data</li>
+                    <li>Retry policies and concurrency</li>
+                    <li>Azure Key Vault integration</li>
+                    <li>Service principals authentication</li>
+                    <li>Child flows and solutions</li>
+                    <li>Integrating with Power Apps</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="key-points">
+            <h2 class="hand-drawn">Advanced Features</h2>
+            <ul>
+                <li><span class="icon">🔒</span> Secure Inputs/Outputs for sensitive data protection</li>
+                <li><span class="icon">🔄</span> Retry policies (Default, Exponential, Fixed)</li>
+                <li><span class="icon">🗝️</span> Azure Key Vault for secret management</li>
+                <li><span class="icon">👥</span> Service principals for non-interactive authentication</li>
+                <li><span class="icon">🧩</span> Child flows for modular automation</li>
+                <li><span class="icon">🤖</span> Copilot for AI-assisted flow creation</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>Microsoft Power Platform Developer | PL-400T00</p>
+        </div>
+    </div>
+</body>
+</html>

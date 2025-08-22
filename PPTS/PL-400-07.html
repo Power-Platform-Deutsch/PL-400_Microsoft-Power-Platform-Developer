@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PL-400: Integrate Dataverse and Azure</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+        
+        body {
+            font-family: 'Indie Flower', cursive;
+            background-color: #f0f7ff;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid #4a86e8;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px dashed #4a86e8;
+            padding-bottom: 15px;
+        }
+        
+        h1 {
+            font-family: 'Gochi Hand', cursive;
+            color: #2c5aa0;
+            margin: 0;
+            font-size: 2.8rem;
+        }
+        
+        h2 {
+            font-family: 'Gochi Hand', cursive;
+            color: #2c5aa0;
+            border-bottom: 2px dotted #4a86e8;
+            padding-bottom: 5px;
+            margin-top: 25px;
+        }
+        
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .module {
+            background: #e6f2ff;
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid #a4c2f4;
+            position: relative;
+        }
+        
+        .module h3 {
+            margin-top: 0;
+            color: #2c5aa0;
+            font-family: 'Gochi Hand', cursive;
+        }
+        
+        .module-number {
+            position: absolute;
+            top: -15px;
+            right: -10px;
+            background: #ff6b6b;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-family: 'Gochi Hand', cursive;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        ul {
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .hand-drawn {
+            border: none;
+            background: transparent;
+            font-family: 'Indie Flower', cursive;
+        }
+        
+        .key-points {
+            background: #fff2cc;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 2px dashed #ffd966;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .icon {
+            font-size: 1.5rem;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        
+        .integration-types {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .integration-type {
+            background: #d5e8d4;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 10px;
+            flex: 1;
+            min-width: 200px;
+            border: 2px solid #82b366;
+        }
+        
+        .integration-type h3 {
+            margin-top: 0;
+            color: #2c5aa0;
+            font-family: 'Gochi Hand', cursive;
+        }
+        
+        .comparison {
+            background: #e2d0e6;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 2px solid #9673a6;
+        }
+        
+        .azure-services {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .azure-service {
+            background: #ffd8cc;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 10px;
+            flex: 1;
+            min-width: 200px;
+            border: 2px solid #ff9d7a;
+            text-align: center;
+        }
+        
+        .azure-service h3 {
+            margin-top: 0;
+            color: #2c5aa0;
+            font-family: 'Gochi Hand', cursive;
+        }
+        
+        .hosting-plans {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .hosting-plan {
+            background: #d4e6f1;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 10px;
+            flex: 1;
+            min-width: 200px;
+            border: 2px solid #85c1e9;
+        }
+        
+        .hosting-plan h3 {
+            margin-top: 0;
+            color: #2c5aa0;
+            font-family: 'Gochi Hand', cursive;
+        }
+        
+        .dataverse-features {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .dataverse-feature {
+            background: #d5f5e3;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 10px;
+            flex: 1;
+            min-width: 200px;
+            border: 2px solid #58d68d;
+            text-align: center;
+        }
+        
+        .dataverse-feature h3 {
+            margin-top: 0;
+            color: #2c5aa0;
+            font-family: 'Gochi Hand', cursive;
+        }
+        
+        .code-block {
+            background: #2b2b2b;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: monospace;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>PL-400: Integrate Dataverse and Azure</h1>
+            <p class="hand-drawn">Session 07: Azure Integration and Dataverse Features</p>
+        </div>
+        
+        <div class="key-points">
+            <h2 class="hand-drawn">Key Learning Objectives</h2>
+            <ul>
+                <li><span class="icon">🔌</span> Publish Dataverse events to Azure Service Bus</li>
+                <li><span class="icon">👂</span> Create Service Bus Event Listeners for Dataverse events</li>
+                <li><span class="icon">⚡</span> Work with Azure Functions and hosting plans</li>
+                <li><span class="icon">🌐</span> Implement Webhooks for HTTP-based integrations</li>
+                <li><span class="icon">🔄</span> Use Dataverse Change Tracking for data synchronization</li>
+                <li><span class="icon">🔑</span> Implement Alternate Keys and Upsert operations</li>
+            </ul>
+        </div>
+        
+        <h2>Native Power Platform Azure Integrations</h2>
+        <div class="azure-services">
+            <div class="azure-service">
+                <h3>Azure Service Bus</h3>
+                <p>Messaging as a Service platform</p>
+            </div>
+            <div class="azure-service">
+                <h3>Azure Functions</h3>
+                <p>Serverless compute</p>
+            </div>
+            <div class="azure-service">
+                <h3>Logic Apps</h3>
+                <p>Workflow orchestration</p>
+            </div>
+            <div class="azure-service">
+                <h3>Event Hubs</h3>
+                <p>Real-time data ingestion</p>
+            </div>
+        </div>
+        
+        <h2>Dataverse Outbound Integration Options</h2>
+        <div class="integration-types">
+            <div class="integration-type">
+                <h3>Azure Service Bus</h3>
+                <p>Post messages to Queues, Topics, Relays (Post Operation only)</p>
+            </div>
+            <div class="integration-type">
+                <h3>Azure Event Hub</h3>
+                <p>Post messages and events to Event Hub (Post Operation only)</p>
+            </div>
+            <div class="integration-type">
+                <h3>Webhooks</h3>
+                <p>Simple HTTP triggers for synchronous or asynchronous processing</p>
+            </div>
+        </div>
+        
+        <div class="comparison">
+            <h2 class="hand-drawn">Choosing the Right Azure Integration</h2>
+            <ul>
+                <li><strong>Logic Apps</strong> - Workflow orchestration across systems</li>
+                <li><strong>Service Bus</strong> - Decouple transactional systems, point-to-point communication</li>
+                <li><strong>Event Hubs</strong> - Process streaming data at scale</li>
+                <li><strong>Event Grid</strong> - Publish and subscribe to events</li>
+                <li><strong>Webhooks</strong> - Send event data to external HTTP endpoints</li>
+                <li><strong>Azure Functions</strong> - Serverless compute for custom APIs</li>
+            </ul>
+        </div>
+        
+        <h2>Azure Functions Hosting Plans</h2>
+        <div class="hosting-plans">
+            <div class="hosting-plan">
+                <h3>Consumption Plan</h3>
+                <p>Default plan, scales automatically, pay only when functions run (5-10 min timeout)</p>
+            </div>
+            <div class="hosting-plan">
+                <h3>Premium Plan</h3>
+                <p>Pre-warmed workers, more powerful instances, VNet connectivity (no max timeout)</p>
+            </div>
+            <div class="hosting-plan">
+                <h3>Dedicated Plan</h3>
+                <p>Runs within App Service plan, best for long-running scenarios</p>
+            </div>
+        </div>
+        
+        <div class="key-points">
+            <h2 class="hand-drawn">Webhooks vs. Azure Service Bus</h2>
+            <ul>
+                <li><span class="icon">🔄</span> <strong>Service Bus</strong> - Asynchronous, queued requests, multiple subscribers</li>
+                <li><span class="icon">🌐</span> <strong>Webhooks</strong> - Synchronous/Asynchronous, HTTP endpoint availability dependent</li>
+                <li><span class="icon">🔐</span> <strong>Authentication</strong> - Service Bus uses SAS, Webhooks support headers/query strings</li>
+                <li><span class="icon">⚡</span> Use Service Bus for high-scale async processing with multiple subscribers</li>
+                <li><span class="icon">🎯</span> Use Webhooks for synchronous processing or existing Web API endpoints</li>
+            </ul>
+        </div>
+        
+        <h2>Dataverse Integration Features</h2>
+        <div class="dataverse-features">
+            <div class="dataverse-feature">
+                <h3>Change Tracking</h3>
+                <p>Pull changed records using delta tokens</p>
+            </div>
+            <div class="dataverse-feature">
+                <h3>Alternate Keys</h3>
+                <p>Use existing columns for record identification</p>
+            </div>
+            <div class="dataverse-feature">
+                <h3>Upsert Method</h3>
+                <p>Insert or update in a single request</p>
+            </div>
+        </div>
+        
+        <div class="key-points">
+            <h2 class="hand-drawn">Change Tracking Implementation</h2>
+            <ul>
+                <li><span class="icon">✅</span> Enable on table metadata (Track Changes flag)</li>
+                <li><span class="icon">🔍</span> Retrieve changes using OData delta links</li>
+                <li><span class="icon">⏰</span> Tokens expire after 30 days by default</li>
+                <li><span class="icon">🔄</span> Store token for subsequent requests</li>
+                <li><span class="icon">📊</span> Change types: NewOrUpdatedItem, RemoveOrDeleted</li>
+                <li><span class="icon">⚡</span> Efficient data synchronization for external systems</li>
+            </ul>
+        </div>
+        
+        <h2>Basic Upsert Operation with Alternate Key</h2>
+        <div class="code-block">
+// Use alternate key (accountnumber) to identify an account
+var account = new Entity("account") {
+    KeyAttributes = new KeyAttributeCollection {
+        {"accountnumber", "MIC-12345"}
+    }
+};
+
+account["name"] = "Microsoft";
+account["creditlimit"] = new Money(100000);
+
+var request = new UpsertRequest() { Target = account };
+var response = (UpsertResponse)service.Execute(request);
+        </div>
+        
+        <div class="key-points">
+            <h2 class="hand-drawn">When to Use Which Integration</h2>
+            <ul>
+                <li><span class="icon">🏗️</span> <strong>Service Bus</strong> - High-scale async, multiple subscribers, centralized governance</li>
+                <li><span class="icon">🔗</span> <strong>Webhooks</strong> - Synchronous processing, existing APIs, immediate operations</li>
+                <li><span class="icon">📊</span> <strong>Change Tracking</strong> - Data synchronization with external systems</li>
+                <li><span class="icon">🔑</span> <strong>Alternate Keys & Upsert</strong> - Inbound integration from external systems</li>
+                <li><span class="icon">⚡</span> <strong>Azure Functions</strong> - Offload complex logic, build custom APIs</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>Microsoft Power Platform Developer | PL-400T00 | Session 07</p>
+        </div>
+    </div>
+</body>
+</html>

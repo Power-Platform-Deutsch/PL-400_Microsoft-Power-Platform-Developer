@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PL-400: Extending Dataverse with Plug-ins</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+        
+        body {
+            font-family: 'Indie Flower', cursive;
+            background-color: #f0f7ff;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid #4a86e8;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px dashed #4a86e8;
+            padding-bottom: 15px;
+        }
+        
+        h1 {
+            font-family: 'Gochi Hand', cursive;
+            color: #2c5aa0;
+            margin: 0;
+            font-size: 2.8rem;
+        }
+        
+        h2 {
+            font-family: 'Gochi Hand', cursive;
+            color: #2c5aa0;
+            border-bottom: 2px dotted #4a86e8;
+            padding-bottom: 5px;
+            margin-top: 25px;
+        }
+        
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .module {
+            background: #e6f2ff;
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid #a4c2f4;
+            position: relative;
+        }
+        
+        .module h3 {
+            margin-top: 0;
+            color: #2c5aa0;
+            font-family: 'Gochi Hand', cursive;
+        }
+        
+        .module-number {
+            position: absolute;
+            top: -15px;
+            right: -10px;
+            background: #ff6b6b;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-family: 'Gochi Hand', cursive;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        ul {
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .hand-drawn {
+            border: none;
+            background: transparent;
+            font-family: 'Indie Flower', cursive;
+        }
+        
+        .key-points {
+            background: #fff2cc;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 2px dashed #ffd966;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .icon {
+            font-size: 1.5rem;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        
+        .pipeline-section {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .pipeline-step {
+            background: #d5e8d4;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 10px;
+            flex: 1;
+            min-width: 200px;
+            border: 2px solid #82b366;
+        }
+        
+        .pipeline-step h3 {
+            margin-top: 0;
+            color: #2c5aa0;
+            font-family: 'Gochi Hand', cursive;
+        }
+        
+        .comparison {
+            background: #e2d0e6;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 2px solid #9673a6;
+        }
+        
+        .execution-modes {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .execution-mode {
+            background: #ffd8cc;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 10px;
+            flex: 1;
+            min-width: 200px;
+            border: 2px solid #ff9d7a;
+            text-align: center;
+        }
+        
+        .execution-mode h3 {
+            margin-top: 0;
+            color: #2c5aa0;
+            font-family: 'Gochi Hand', cursive;
+        }
+        
+        .alternatives {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .alternative {
+            background: #d4e6f1;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 10px;
+            flex: 1;
+            min-width: 200px;
+            border: 2px solid #85c1e9;
+        }
+        
+        .alternative h3 {
+            margin-top: 0;
+            color: #2c5aa0;
+            font-family: 'Gochi Hand', cursive;
+        }
+        
+        .context-items {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .context-item {
+            background: #d5f5e3;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 10px;
+            flex: 1;
+            min-width: 200px;
+            border: 2px solid #58d68d;
+            text-align: center;
+        }
+        
+        .context-item h3 {
+            margin-top: 0;
+            color: #2c5aa0;
+            font-family: 'Gochi Hand', cursive;
+        }
+        
+        .code-block {
+            background: #2b2b2b;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: monospace;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>PL-400: Extending Dataverse with Plug-ins</h1>
+            <p class="hand-drawn">Session 06: Server-Side Development with Plug-ins</p>
+        </div>
+        
+        <div class="key-points">
+            <h2 class="hand-drawn">Key Learning Objectives</h2>
+            <ul>
+                <li><span class="icon">🏗️</span> Understand Dataverse architecture and extensibility model</li>
+                <li><span class="icon">⚙️</span> Create and register plug-ins for custom business logic</li>
+                <li><span class="icon">🔄</span> Work with event pipeline stages and execution modes</li>
+                <li><span class="icon">🐛</span> Debug and troubleshoot plug-ins effectively</li>
+                <li><span class="icon">🚀</span> Optimize plug-in performance and handle errors</li>
+                <li><span class="icon">🔌</span> Implement Custom API messages</li>
+            </ul>
+        </div>
+        
+        <h2>Event Pipeline Stages</h2>
+        <div class="pipeline-section">
+            <div class="pipeline-step">
+                <h3>PreValidation</h3>
+                <p>Before security checks, can cancel operation</p>
+            </div>
+            <div class="pipeline-step">
+                <h3>PreOperation</h3>
+                <p>Within transaction, can change message data</p>
+            </div>
+            <div class="pipeline-step">
+                <h3>PostOperation</h3>
+                <p>After transaction, can create related data</p>
+            </div>
+        </div>
+        
+        <h2>Execution Modes</h2>
+        <div class="execution-modes">
+            <div class="execution-mode">
+                <h3>Synchronous</h3>
+                <p>Runs immediately, operation waits for completion</p>
+            </div>
+            <div class="execution-mode">
+                <h3>Asynchronous</h3>
+                <p>Runs as system job after operation completes</p>
+            </div>
+        </div>
+        
+        <div class="comparison">
+            <h2 class="hand-drawn">When to Use Plug-ins vs Alternatives</h2>
+            <ul>
+                <li><strong>Plug-ins</strong> - Synchronous logic, external data access, complex business rules, high performance requirements</li>
+                <li><strong>Alternatives</strong> - Simple logic, business user maintenance, on-demand execution, declarative processes</li>
+                <li>Consider Power Automate, workflows, calculated columns, or business rules before implementing plug-ins</li>
+            </ul>
+        </div>
+        
+        <h2>Plug-in Execution Context</h2>
+        <div class="context-items">
+            <div class="context-item">
+                <h3>InputParameters</h3>
+                <p>Data sent to the operation</p>
+            </div>
+            <div class="context-item">
+                <h3>OutputParameters</h3>
+                <p>Data returned from operation</p>
+            </div>
+            <div class="context-item">
+                <h3>PreEntityImages</h3>
+                <p>Data before operation</p>
+            </div>
+            <div class="context-item">
+                <h3>PostEntityImages</h3>
+                <p>Data after operation</p>
+            </div>
+        </div>
+        
+        <div class="key-points">
+            <h2 class="hand-drawn">Plug-in Development Basics</h2>
+            <ul>
+                <li><span class="icon">📦</span> Implement IPlugin interface with Execute method</li>
+                <li><span class="icon">🔧</span> Access services via IServiceProvider parameter</li>
+                <li><span class="icon">📝</span> Use ITracingService for diagnostic logging</li>
+                <li><span class="icon">👤</span> Implement impersonation with IOrganizationService</li>
+                <li><span class="icon">🚫</span> Throw InvalidPluginExecutionException for user errors</li>
+            </ul>
+        </div>
+        
+        <h2>Basic Plug-in Structure</h2>
+        <div class="code-block">
+public class MyPlugin : IPlugin {
+    public void Execute(IServiceProvider serviceProvider) {
+        // Get execution context
+        IPluginExecutionContext context = (IPluginExecutionContext)
+            serviceProvider.GetService(typeof(IPluginExecutionContext));
+        
+        // Get tracing service
+        ITracingService tracingService = (ITracingService)
+            serviceProvider.GetService(typeof(ITracingService));
+        
+        // Get organization service
+        IOrganizationServiceFactory serviceFactory = (IOrganizationServiceFactory)
+            serviceProvider.GetService(typeof(IOrganizationServiceFactory));
+        IOrganizationService orgService = serviceFactory.CreateOrganizationService(context.UserId);
+        
+        // Your business logic here
+    }
+}
+        </div>
+        
+        <h2>Plug-in Alternatives</h2>
+        <div class="alternatives">
+            <div class="alternative">
+                <h3>Dataverse Workflows</h3>
+                <p>Declarative business processes</p>
+            </div>
+            <div class="alternative">
+                <h3>Power Automate</h3>
+                <p>Cloud flows with connectors</p>
+            </div>
+            <div class="alternative">
+                <h3>Calculated Columns</h3>
+                <p>Automated field calculations</p>
+            </div>
+            <div class="alternative">
+                <h3>Business Rules</h3>
+                <p>Client-side validation logic</p>
+            </div>
+        </div>
+        
+        <div class="key-points">
+            <h2 class="hand-drawn">Debugging & Troubleshooting</h2>
+            <ul>
+                <li><span class="icon">🔍</span> Use ITracingService for diagnostic messages</li>
+                <li><span class="icon">📊</span> Check plug-in trace logs in Power Platform Admin Center</li>
+                <li><span class="icon">⏱️</span> Monitor for 2-minute execution timeout</li>
+                <li><span class="icon">🔄</span> Use plug-in profiler for debugging</li>
+                <li><span class="icon">📈</span> Analyze performance with Analytics</li>
+            </ul>
+        </div>
+        
+        <h2>Practice Lab: Dataverse Plug-ins</h2>
+        <div class="module">
+            <h3>Lab 8: Dataverse Plug-ins</h3>
+            <ul>
+                <li>Build plug-in to validate permit creation</li>
+                <li>Create plug-in for Lock Permit custom API</li>
+                <li>Implement business logic to check for locked permits</li>
+                <li>Register plug-in steps with Plugin Registration Tool</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>Microsoft Power Platform Developer | PL-400T00 | Session 06</p>
+        </div>
+    </div>
+</body>
+</html>

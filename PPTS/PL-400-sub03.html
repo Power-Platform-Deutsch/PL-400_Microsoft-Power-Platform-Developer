@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PL-400: Canvas Apps Summary</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+        
+        body {
+            font-family: 'Indie Flower', cursive;
+            background-color: #f0f7ff;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid #4a86e8;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px dashed #4a86e8;
+            padding-bottom: 15px;
+        }
+        
+        h1 {
+            font-family: 'Gochi Hand', cursive;
+            color: #2c5aa0;
+            margin: 0;
+            font-size: 2.8rem;
+        }
+        
+        h2 {
+            font-family: 'Gochi Hand', cursive;
+            color: #2c5aa0;
+            border-bottom: 2px dotted #4a86e8;
+            padding-bottom: 5px;
+            margin-top: 25px;
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .summary-card {
+            background: #e6f2ff;
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid #a4c2f4;
+            position: relative;
+        }
+        
+        .summary-card h3 {
+            margin-top: 0;
+            color: #2c5aa0;
+            font-family: 'Gochi Hand', cursive;
+            border-bottom: 1px dashed #4a86e8;
+            padding-bottom: 5px;
+        }
+        
+        .hand-drawn {
+            border: none;
+            background: transparent;
+            font-family: 'Indie Flower', cursive;
+        }
+        
+        .sketchy-box {
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 3px 3px 0px #333;
+            background: #fff;
+        }
+        
+        .icon {
+            font-size: 1.5rem;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #666;
+            border-top: 2px dashed #4a86e8;
+            padding-top: 15px;
+        }
+        
+        .connector {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: #ffd966;
+            border: 2px solid #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            top: -15px;
+            right: -15px;
+            box-shadow: 2px 2px 0px #333;
+        }
+        
+        .highlight {
+            background: #fff2cc;
+            padding: 3px 6px;
+            border-radius: 4px;
+            border: 1px dashed #ffd966;
+        }
+        
+        .studio-layout {
+            display: flex;
+            margin: 15px 0;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .pane {
+            padding: 10px;
+            border-right: 1px solid #ccc;
+        }
+        
+        .pane:last-child {
+            border-right: none;
+        }
+        
+        .left-pane {
+            flex: 1;
+            background: #f0f8ff;
+        }
+        
+        .middle-pane {
+            flex: 3;
+            background: #fff;
+        }
+        
+        .right-pane {
+            flex: 1;
+            background: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>PL-400: Canvas Apps</h1>
+            <p class="hand-drawn">One-Page Excalidraw Style Summary</p>
+        </div>
+        
+        <div class="summary-grid">
+            <div class="summary-card">
+                <span class="connector">1</span>
+                <h3>Canvas Apps Overview</h3>
+                <p><span class="icon">🎨</span> Pixel-perfect control over app design</p>
+                <p><span class="icon">📱</span> Build for specific devices and form factors</p>
+                <p><span class="icon">🔌</span> Connect to 200+ data sources</p>
+                <p><span class="icon">🤖</span> AI-powered creation with Copilot</p>
+                <p><span class="icon">🚀</span> Low-code development platform</p>
+                <p><span class="icon">🌐</span> Cross-platform (web, iOS, Android)</p>
+            </div>
+            
+            <div class="summary-card">
+                <span class="connector">2</span>
+                <h3>Power Apps Studio</h3>
+                <div class="studio-layout">
+                    <div class="pane left-pane">
+                        <p><strong>Left Pane</strong></p>
+                        <p>Screen thumbnails & control hierarchy</p>
+                    </div>
+                    <div class="pane middle-pane">
+                        <p><strong>Middle Pane</strong></p>
+                        <p>Canvas design area</p>
+                    </div>
+                    <div class="pane right-pane">
+                        <p><strong>Right Pane</strong></p>
+                        <p>Properties & data sources</p>
+                    </div>
+                </div>
+                <p><span class="icon">🛠️</span> Three-pane interface (like PowerPoint)</p>
+                <p><span class="icon">📐</span> Drag-and-drop controls</p>
+                <p><span class="icon">⚙️</span> Property panel for customization</p>
+            </div>
+            
+            <div class="summary-card">
+                <span class="connector">3</span>
+                <h3>Power Fx Formulas</h3>
+                <p><span class="icon">📊</span> Excel-like declarative language</p>
+                <p><span class="icon">🔢</span> Used for calculations, logic, data operations</p>
+                <p><span class="icon">👁️</span> Control visibility & behavior</p>
+                <p><span class="icon">📝</span> Set control properties & values</p>
+                <p><span class="icon">🤖</span> AI-assisted with Copilot</p>
+                <p><span class="icon">🔍</span> Real-time error checking</p>
+            </div>
+            
+            <div class="summary-card">
+                <span class="connector">4</span>
+                <h3>Key Controls</h3>
+                <p><span class="icon">🖼️</span> Galleries - Display data collections</p>
+                <p><span class="icon">📋</span> Forms - Create/edit records</p>
+                <p><span class="icon">🏷️</span> Labels - Display text</p>
+                <p><span class="icon">📝</span> Text Input - User data entry</p>
+                <p><span class="icon">📷</span> Media - Camera, images, barcode</p>
+                <p><span class="icon">📊</span> Charts - Data visualization</p>
+            </div>
+            
+            <div class="summary-card">
+                <span class="connector">5</span>
+                <h3>Navigation</h3>
+                <p><span class="icon">🧭</span> Navigate() - Move between screens</p>
+                <p><span class="icon">↩️</span> Back() - Return to previous screen</p>
+                <p><span class="icon">🎬</span> Screen transitions (Cover, Fade, etc.)</p>
+                <p><span class="icon">📤</span> Pass parameters between screens</p>
+                <p><span class="icon">🧩</span> Typically used in OnSelect events</p>
+                <p><span class="icon">🔀</span> Control app flow and user journey</p>
+            </div>
+            
+            <div class="summary-card">
+                <span class="connector">6</span>
+                <h3>Canvas Components</h3>
+                <p><span class="icon">♻️</span> Reusable building blocks</p>
+                <p><span class="icon">📚</span> Component libraries for sharing</p>
+                <p><span class="icon">🔧</span> Custom properties (Input/Output)</p>
+                <p><span class="icon">🌐</span> App scope access (variables, data)</p>
+                <p><span class="icon">🔄</span> Update once, apply everywhere</p>
+                <p><span class="icon">👥</span> Enable team collaboration</p>
+            </div>
+            
+            <div class="summary-card">
+                <span class="connector">7</span>
+                <h3>Testing & Debugging</h3>
+                <p><span class="icon">🧪</span> Test Studio for automated testing</p>
+                <p><span class="icon">📋</span> Test suites, cases, steps, assertions</p>
+                <p><span class="icon">📱</span> Preview on different devices</p>
+                <p><span class="icon">🐛</span> Monitor tool for performance</p>
+                <p><span class="icon">🔍</span> App checker for errors</p>
+                <p><span class="icon">📝</span> Documentation features</p>
+            </div>
+            
+            <div class="summary-card">
+                <span class="connector">8</span>
+                <h3>App Creation Methods</h3>
+                <p><span class="icon">💬</span> From conversation (AI Copilot)</p>
+                <p><span class="icon">📊</span> From data (SharePoint, Dataverse)</p>
+                <p><span class="icon">🎨</span> From design (pre-built layouts)</p>
+                <p><span class="icon">📂</span> From template (pre-built apps)</p>
+                <p><span class="icon">⬜</span> From blank canvas (full control)</p>
+                <p><span class="icon">🤖</span> AI-assisted throughout process</p>
+            </div>
+        </div>
+        
+        <div class="sketchy-box">
+            <h3 class="hand-drawn">Key Properties & Functions</h3>
+            <p><span class="highlight">Default</span> - Initial value of a control</p>
+            <p><span class="highlight">Items</span> - Data source for galleries/lists</p>
+            <p><span class="highlight">OnSelect</span> - Actions when control is tapped</p>
+            <p><span class="highlight">OnChange</span> - Actions when value changes</p>
+            <p><span class="highlight">Visible</span> - Show/hide controls</p>
+            <p><span class="highlight">DisplayMode</span> - Edit, View, or Disabled states</p>
+            <p><span class="highlight">Filter</span> & <span class="highlight">Search</span> - Manipulate data sources</p>
+        </div>
+        
+        <div class="footer">
+            <p>Microsoft Power Platform Developer | PL-400T00 | Canvas Apps Supplementary Summary</p>
+        </div>
+    </div>
+</body>
+</html>
