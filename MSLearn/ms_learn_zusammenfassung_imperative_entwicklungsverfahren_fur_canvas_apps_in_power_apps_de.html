@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Imperative Entwicklungsverfahren für Canvas‑Apps in Power Apps – Zusammenfassung</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#2f2f2f;        /* Bleistift-Farbe */
+      --paper:#ffffff;      /* Weißes Papier */
+      --accent:#3b82f6;     /* Akzent Blau */
+      --accent-2:#ef4444;   /* Rot */
+      --accent-3:#10b981;   /* Grün */
+      --accent-4:#f59e0b;   /* Gelb */
+      --muted:#6b7280;      /* Grau */
+      --box:#f8fafc;        /* sehr helles Grau */
+    }
+    html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
+    .wrap{max-width:1100px;margin:40px auto;padding:0 22px 80px 22px}
+    header{display:flex;gap:18px;align-items:center;margin-bottom:22px}
+    .logo{width:60px;height:60px;border-radius:14px;position:relative;background:var(--box);}
+    /* skizzenhafte Doppelrahmen */
+    .sketch{border:2px solid var(--ink);border-radius:16px;position:relative;}
+    .sketch:after{content:"";position:absolute;inset:6px 8px 8px 6px;border:2px dashed rgba(47,47,47,.55);border-radius:14px;pointer-events:none}
+    .title{font-weight:800;font-size:clamp(20px,3.6vw,36px);line-height:1.15;margin:0}
+    .subtitle{margin:.25rem 0 0 0;color:var(--muted)}
+    .hand{font-family:"Shadows Into Light",cursive;letter-spacing:.2px}
+
+    /* Buttons */
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 26px}
+    .btn{appearance:none;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:10px 14px;font-weight:700;cursor:pointer;transition:transform .04s ease;box-shadow:2px 2px 0 0 var(--ink)}
+    .btn:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 0 var(--ink)}
+    .btn:active{transform:translate(1px,1px);box-shadow:1px 1px 0 0 var(--ink)}
+    .btn.primary{background:var(--accent);color:#fff}
+
+    /* Callouts */
+    .callouts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:18px 0 32px}
+    .callout{background:var(--box);padding:16px;border-radius:16px;border:2px solid var(--ink);position:relative}
+    .callout .tag{position:absolute;top:-12px;left:14px;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:4px 10px;font-weight:800}
+
+    /* Cards */
+    .cards{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+    .card{grid-column:span 12;background:#fff;padding:18px;border-radius:18px;border:2px solid var(--ink);position:relative}
+    @media(min-width:880px){.card.half{grid-column:span 6}}
+    .card h3{margin:0 0 8px 0;font-size:1.15rem}
+    .card h4{margin:14px 0 6px 0;font-size:1rem}
+    .kicker{display:inline-flex;align-items:center;gap:8px;font-weight:800;margin-bottom:8px}
+    .kicker svg{width:18px;height:18px}
+
+    /* List styles */
+    ul{margin:8px 0 10px 20px}
+    li{margin:6px 0}
+
+    /* Code/Formula boxes */
+    .code{background:#fff;border:2px dashed var(--ink);border-radius:14px;padding:10px 12px;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap}
+
+    /* TOC */
+    .toc{background:#fff;padding:16px;border-radius:16px;border:2px solid var(--ink);margin:16px 0 32px}
+    .toc a{color:#111;text-decoration:none;border-bottom:2px solid rgba(17,17,17,.2);padding-bottom:2px}
+    .toc a:hover{border-bottom-color:var(--accent)}
+
+    /* Pills */
+    .pill{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--ink);border-radius:999px;padding:4px 10px;margin:4px 6px 0 0;background:#fff}
+
+    /* Footer */
+    footer{margin-top:36px;font-size:.95rem;color:var(--muted)}
+
+    /* Colored boxes */
+    .box{padding:12px;border-radius:14px;border:2px solid var(--ink);background:var(--box)}
+    .box.blue{background:rgba(59,130,246,.08)}
+    .box.red{background:rgba(239,68,68,.08)}
+    .box.green{background:rgba(16,185,129,.10)}
+    .box.yellow{background:rgba(245,158,11,.12)}
+
+    /* Little doodle arrows */
+    .arrow{font-family:"Shadows Into Light",cursive;font-size:24px}
+
+    a.external::after{content:"↗";font-size:.9em;margin-left:6px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo sketch" aria-hidden="true"></div>
+      <div>
+        <h1 class="title">Imperative Entwicklungsverfahren für Canvas‑Apps in Power Apps <span class="hand">– Zusammenfassung</span></h1>
+        <p class="subtitle">Basierend auf dem Microsoft Learn Modul: <a class="external" href="https://learn.microsoft.com/de-de/training/modules/use-imperative-dev-techniques-powerapps-canvas-app/" target="_blank" rel="noopener">Imperative Entwicklungsverfahren für Canvas‑Apps verwenden</a></p>
+      </div>
+    </header>
+
+    <div class="actions">
+      <button class="btn primary" onclick="downloadMe()">📥 Diese Seite als HTML speichern</button>
+      <a class="btn" href="#toc">🧭 Inhaltsverzeichnis</a>
+      <a class="btn" href="#ressourcen">🔗 Ressourcen</a>
+    </div>
+
+    <section class="callouts">
+      <div class="callout">
+        <div class="tag">Lernziele</div>
+        <ul>
+          <li>Unterschiede zwischen <strong>imperativer</strong> und <strong>deklarativer</strong> Entwicklung verstehen.</li>
+          <li>Die <strong>drei Variablentypen</strong> in Power Apps kennen (global, Kontext, Sammlung).</li>
+          <li>Wissen, <strong>wann</strong> welcher Variablentyp passt und wie Variablen die App‑Leistung verbessern können.</li>
+        </ul>
+      </div>
+      <div class="callout">
+        <div class="tag">Voraussetzungen</div>
+        <p>Grundkenntnisse im Erstellen einer Canvas‑App in Power Apps.</p>
+        <div class="pill">🎯 Level: Fortgeschritten</div>
+        <div class="pill">🧑‍💼 Rollen: App‑Entwickler · Fachberater</div>
+      </div>
+    </section>
+
+    <section id="toc" class="toc sketch">
+      <h2 class="hand" style="margin:0 0 6px 0">Inhaltsverzeichnis</h2>
+      <ol>
+        <li><a href="#unit1">Imperative vs. deklarative Entwicklung</a></li>
+        <li><a href="#unit2">Die drei Variablentypen</a></li>
+        <li><a href="#unit3">Globale Variablen (Set)</a></li>
+        <li><a href="#unit4">Kontextvariablen (UpdateContext)</a></li>
+        <li><a href="#unit5">Sammlungen (Collect/ClearCollect)</a></li>
+        <li><a href="#unit6">Weitere Variablenkonzepte</a></li>
+        <li><a href="#unit7">Übung: Variablen & Sammlungen</a></li>
+        <li><a href="#unit8">Modulbewertung</a></li>
+        <li><a href="#unit9">Zusammenfassung & Tipps</a></li>
+      </ol>
+    </section>
+
+    <section class="cards">
+      <!-- Unit 1 -->
+      <article id="unit1" class="card">
+        <div class="kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v18M3 12h18"/></svg> Ein­heit 1</div>
+        <h3>Imperative und deklarative Entwicklung</h3>
+        <p>Imperativ = <em>wie</em> (Schritt‑für‑Schritt‑Kontrolle, mehr Code, flexible Logik). Deklarativ = <em>was</em> (Ergebnis ausdrücken, einfacher, weniger Kontrolle). Power Apps unterstützt beides; dieses Modul fokussiert die <strong>imperativen</strong> Bausteine über Variablen.</p>
+        <p class="box blue">Referenz: <a class="external" href="https://learn.microsoft.com/de-de/training/modules/use-imperative-dev-techniques-powerapps-canvas-app/1-imperative-vs-declarative" target="_blank" rel="noopener">Einheit 1 – Imperativ vs. deklarativ</a></p>
+      </article>
+
+      <!-- Unit 2 -->
+      <article id="unit2" class="card half">
+        <div class="kicker">🔡 Ein­heit 2</div>
+        <h3>Die drei Typen von Variablen in Power Apps</h3>
+        <ul>
+          <li><strong>Global</strong>: überall in der App gültig, <code>Set(Name, Wert)</code>.</li>
+          <li><strong>Kontext</strong>: nur auf dem aktuellen Bildschirm, <code>UpdateContext({Name: Wert})</code>.</li>
+          <li><strong>Sammlung</strong>: Tabelle (Datensätze/Spalten), <code>Collect</code> / <code>ClearCollect</code>.</li>
+        </ul>
+        <p class="box">Variablen sind <strong>temporär</strong> (pro Benutzer/Session). Für Persistenz: in eine Datenquelle schreiben.</p>
+        <p class="box blue">Referenz: <a class="external" href="https://learn.microsoft.com/de-de/training/modules/use-imperative-dev-techniques-powerapps-canvas-app/2-variables" target="_blank" rel="noopener">Einheit 2 – Variablen</a></p>
+      </article>
+
+      <!-- Unit 3 -->
+      <article id="unit3" class="card half">
+        <div class="kicker">🌍 Ein­heit 3</div>
+        <h3>Globale Variablen (Set)</h3>
+        <h4>Personalisierung ohne wiederholte Netzaufrufe</h4>
+        <div class="code">// Beim App‑Start speichern
+Set(varUserDisplayName, User().FullName)
+
+// Später nutzen
+"Welcome " & varUserDisplayName</div>
+        <h4>Komplexe Ausdrücke einmal berechnen</h4>
+        <div class="code">// Auf Bildschirm sichtbar: Status vorab berechnen
+Set(varOutstandingExceeded,
+    CountRows(Filter(InvoiceEntity,
+      CustomerNumber = ThisCustomersNumber && Status = "Outstanding")) > 3)
+// Sichtbarkeit binden:
+// Icon.Visible = varOutstandingExceeded; Button.Visible = varOutstandingExceeded</div>
+        <p class="box blue">Referenz: <a class="external" href="https://learn.microsoft.com/de-de/training/modules/use-imperative-dev-techniques-powerapps-canvas-app/3-global-variables" target="_blank" rel="noopener">Einheit 3 – Globale Variablen</a></p>
+      </article>
+
+      <!-- Unit 4 -->
+      <article id="unit4" class="card half">
+        <div class="kicker">🧩 Ein­heit 4</div>
+        <h3>Kontextvariablen (UpdateContext)</h3>
+        <p>Ideal zum Steuern von <strong>Popup‑Dialogen</strong> o. Ä. auf einem Bildschirm – Wiederverwendung auf mehreren Bildschirmen mit identischem Namen, aber <em>ohne</em> gegenseitige Beeinflussung.</p>
+        <div class="code">// Popup anzeigen
+UpdateContext({ varShowPopUp: true })
+// Mehrere auf einmal
+UpdateContext({ varCount: 1, varActive: true, varName: User().FullName })</div>
+        <p class="box">Standardwahl oft: <strong>global</strong>. Kontextvariablen sind großartig für isolierte Bildschirm‑Logik.</p>
+        <p class="box blue">Referenz: <a class="external" href="https://learn.microsoft.com/de-de/training/modules/use-imperative-dev-techniques-powerapps-canvas-app/4-contextual-variables" target="_blank" rel="noopener">Einheit 4 – Kontextvariablen</a></p>
+      </article>
+
+      <!-- Unit 5 -->
+      <article id="unit5" class="card half">
+        <div class="kicker">📦 Ein­heit 5</div>
+        <h3>Sammlungen (Collect/ClearCollect)</h3>
+        <h4>Leistungsoptimierung durch Caching</h4>
+        <div class="code">// Tabelle einmal laden und mehrfach nutzen
+Collect(collectProjects, Projects)</div>
+        <ul>
+          <li><strong>Nicht delegierbar</strong>: <code>Collect</code> lädt standardmäßig nur die ersten ~500 Datensätze.</li>
+          <li><strong>Entkoppelt</strong> von der Quelle – Änderungen in der Sammlung werden nicht automatisch zurückgeschrieben.</li>
+          <li><strong>Temporär</strong> – beim Schließen der App werden Inhalte verworfen.</li>
+        </ul>
+        <h4>Dynamische Sammlungen</h4>
+        <div class="code">Collect(collectColors,
+  {Name:"Shane", FavoriteColor:"Orange"},
+  {Name:"Mary",  FavoriteColor:"Blue"},
+  {Name:"Oscar", FavoriteColor:"Yellow"})</div>
+        <p class="box blue">Referenz: <a class="external" href="https://learn.microsoft.com/de-de/training/modules/use-imperative-dev-techniques-powerapps-canvas-app/5-collections" target="_blank" rel="noopener">Einheit 5 – Sammlungen</a></p>
+      </article>
+
+      <!-- Unit 6 -->
+      <article id="unit6" class="card half">
+        <div class="kicker">🧠 Ein­heit 6</div>
+        <h3>Weitere Variablenkonzepte</h3>
+        <ul>
+          <li><strong>Selbst‑Referenz</strong>: Zähler/Anfügen, z. B. <code>Set(varCounter, varCounter + 1)</code>.</li>
+          <li><strong>Datensatz in Variablen</strong>: <code>Set(varUser, User())</code> und Zugriff via <code>varUser.Email</code>.</li>
+          <li><strong>Standardwerte</strong>: Text = "", Zahl = 0, Boolesch = false.</li>
+          <li><strong>Kein Auto‑Refresh</strong>: Variablen aktualisieren sich nur durch Ihre Logik oder beim Neustart.</li>
+        </ul>
+        <p class="box blue">Referenz: <a class="external" href="https://learn.microsoft.com/de-de/training/modules/use-imperative-dev-techniques-powerapps-canvas-app/6-additional-variables" target="_blank" rel="noopener">Einheit 6 – Weitere Konzepte</a></p>
+      </article>
+
+      <!-- Unit 7 -->
+      <article id="unit7" class="card">
+        <div class="kicker">🧪 Praxis</div>
+        <h3>Übung – Variablen und Sammlungen verwenden</h3>
+        <ol>
+          <li>Neue Canvas‑App (Tablet) anlegen; in <code>App.OnStart</code> <code>ClearCollect(colCustomer,…)</code> + <code>Set(varUserDisplayName, User().FullName)</code>.</li>
+          <li>Galerie anlegen, <code>Items = colCustomer</code>, Papierkorb‑Icon pro Eintrag.</li>
+          <li>OnSelect Papierkorb: erst <code>UpdateContext({varPopup:true})</code>; Popup (Rect/Label/Buttons) gestalten.</li>
+          <li>Bestätigen: <code>Remove(colCustomer, ThisItem)</code>; Abbrechen: <code>UpdateContext({varPopup:false})</code>.</li>
+        </ol>
+        <p class="box blue">Referenz: <a class="external" href="https://learn.microsoft.com/de-de/training/modules/use-imperative-dev-techniques-powerapps-canvas-app/6a-exercise-variables-collection" target="_blank" rel="noopener">Übung – Schritt‑für‑Schritt</a></p>
+      </article>
+
+      <!-- Unit 8 -->
+      <article id="unit8" class="card half">
+        <div class="kicker">✅ Ein­heit 8</div>
+        <h3>Modulbewertung</h3>
+        <p>Kurzer Multiple‑Choice‑Check zu Variablenarten und ‑einsatz (ca. 6 Min.).</p>
+        <p class="box blue">Start: <a class="external" href="https://learn.microsoft.com/de-de/training/modules/use-imperative-dev-techniques-powerapps-canvas-app/7-knowledge-check" target="_blank" rel="noopener">Modulbewertung</a></p>
+      </article>
+
+      <!-- Unit 9 -->
+      <article id="unit9" class="card half">
+        <div class="kicker">🧾 Ein­heit 9</div>
+        <h3>Zusammenfassung & Extra‑Tipps</h3>
+        <ul>
+          <li>Power Apps vereint imperativ & deklarativ – Variablen sind der Schlüssel für imperative Logik.</li>
+          <li>Global für appweite Zustände; Kontext für Bildschirme; Sammlung für tabellarische Daten.</li>
+          <li>Denk an <strong>Delegation</strong> & <strong>Persistenz</strong> (Schreiben in Datenquelle) für Performance & Datenhaltbarkeit.</li>
+        </ul>
+        <p class="box blue">Referenz: <a class="external" href="https://learn.microsoft.com/de-de/training/modules/use-imperative-dev-techniques-powerapps-canvas-app/8-summary" target="_blank" rel="noopener">Zusammenfassung</a></p>
+      </article>
+    </section>
+
+    <section id="ressourcen" class="card">
+      <div class="kicker">🔗 Ressourcen</div>
+      <h3>Vertiefung & verwandte Learn‑Inhalte</h3>
+      <ul>
+        <li>Delegationsgrenzen: <a class="external" href="https://learn.microsoft.com/de-de/power-apps/maker/canvas-apps/delegation-overview" target="_blank" rel="noopener">Arbeiten mit Datenquellengrenzwerten</a></li>
+        <li>Tabellen & Datensätze in Formeln: <a class="external" href="https://learn.microsoft.com/de-de/training/modules/work-with-tables-records-powerapps/" target="_blank" rel="noopener">Einfache Formeln mit Tabellen/Datensätzen</a></li>
+        <li>Learn‑Pfad „Mit Daten in einer Canvas‑App arbeiten“: <a class="external" href="https://learn.microsoft.com/de-de/training/paths/work-with-data-powerapps/" target="_blank" rel="noopener">Daten in Canvas‑Apps</a></li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>Erstellt als kompakte Zusammenfassung mit skizzenhaftem, professionellem Stil. Alle Marken gehören ihren jeweiligen Eigentümern. Diese Seite enthält Links auf Microsoft Learn als Referenz.</p>
+    </footer>
+  </div>
+
+  <script>
+    function downloadMe(){
+      const html = `<!DOCTYPE html>` + document.documentElement.outerHTML;
+      const blob = new Blob([html], {type: 'text/html'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'powerapps-canvas-imperative-zusammenfassung.html';
+      document.body.appendChild(a);
+      a.click();
+      URL.revokeObjectURL(a.href);
+      a.remove();
+    }
+  </script>
+</body>
+</html>

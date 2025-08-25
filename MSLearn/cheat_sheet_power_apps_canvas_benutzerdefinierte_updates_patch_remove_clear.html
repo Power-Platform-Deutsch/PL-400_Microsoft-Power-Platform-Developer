@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cheat Sheet – Benutzerdefinierte Updates in Power Apps‑Canvas‑Apps</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2f2f2f; --shade:#6b7280; --accent:#2563eb; --accent-2:#16a34a; --warn:#ef4444; --paper:#fff; --muted:#f3f4f6; --shadow: rgba(0,0,0,.08);
+  }
+  *{box-sizing:border-box}
+  body{background:var(--paper); color:var(--ink); font-family:Inter,system-ui,Segoe UI,Roboto,Arial,Helvetica,sans-serif; line-height:1.5; margin:0; padding:24px}
+  header.hero{display:flex; gap:16px; align-items:center; flex-wrap:wrap; background:#fff; border:2px solid var(--ink); border-radius:18px; padding:18px 20px; box-shadow:6px 6px 0 var(--shadow); position:relative}
+  header.hero:before{content:""; position:absolute; inset:8px; border:1px dashed var(--shade); border-radius:14px}
+  .pencil-title{font-family:"Architects Daughter",cursive; font-size:clamp(26px,4vw,40px); margin:0}
+  .meta{display:flex; gap:8px; flex-wrap:wrap; font-size:14px}
+  .chip{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; background:var(--muted); border:1.5px solid var(--ink); border-radius:999px; box-shadow:3px 3px 0 var(--shadow)}
+  .actions{margin-left:auto; display:flex; gap:10px}
+  .btn{appearance:none; cursor:pointer; border:2px solid var(--ink); border-radius:12px; background:#fff; padding:10px 14px; font-weight:700; box-shadow:4px 4px 0 var(--shadow)}
+  .btn.primary{background:var(--accent); color:#fff}
+  .grid{display:grid; grid-template-columns:1fr; gap:18px; margin-top:22px}
+  @media(min-width:960px){.grid{grid-template-columns: 1fr 1fr}}
+  .card{background:#fff; border:2px solid var(--ink); border-radius:16px; padding:16px; position:relative; box-shadow:6px 6px 0 var(--shadow)}
+  .card:before{content:""; position:absolute; inset:6px; border:1px dashed var(--shade); border-radius:12px; pointer-events:none}
+  h2,h3{font-family:"Architects Daughter",cursive; margin:.2em 0 .4em}
+  h2{font-size:clamp(22px,3vw,30px)}
+  h3{font-size:clamp(18px,2.5vw,24px)}
+  .pill{display:inline-block; padding:2px 8px; border:1.5px solid var(--ink); border-radius:999px; background:#fafafa; font-size:12px; margin-left:6px}
+  pre{background:#fff; border:2px solid var(--ink); border-radius:14px; padding:12px; overflow:auto; position:relative; box-shadow:4px 4px 0 var(--shadow); font-size:13px}
+  pre:before{content:"// Formel"; position:absolute; top:-12px; left:12px; background:#fff; padding:2px 8px; border:1px solid var(--ink); border-radius:999px; font-size:12px}
+  code{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace}
+  .callout{border-left:6px solid var(--accent); background:linear-gradient(0deg,#f8fbff,#fff); padding:12px 14px; border-radius:12px; margin:10px 0; box-shadow:3px 3px 0 var(--shadow)}
+  .callout.warn{border-left-color:var(--warn); background:linear-gradient(0deg,#fff7f7,#fff)}
+  .cols{display:grid; grid-template-columns:1fr; gap:12px}
+  @media(min-width:720px){.cols{grid-template-columns:1fr 1fr}}
+  .links a{display:inline-flex; align-items:center; gap:8px; padding:8px 10px; border:1.5px solid var(--ink); border-radius:12px; background:var(--muted); color:var(--ink); text-decoration:none; box-shadow:3px 3px 0 var(--shadow); margin:4px 6px 0 0}
+  .hr{height:2px; background:repeating-linear-gradient(90deg, #9ca3af 0 16px, transparent 16px 22px); opacity:.6; margin:14px 0}
+  footer{margin-top:22px; font-size:13px; color:#4b5563}
+</style>
+</head>
+<body>
+  <header class="hero">
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20l9-9-3-3-9 9-4 1 1-4 9-9"/><path d="M16 5l3 3"/></svg>
+    <div>
+      <h1 class="pencil-title">Cheat Sheet – Benutzerdefinierte Updates (Canvas‑Apps)</h1>
+      <div class="meta">
+        <span class="chip">Patch • Remove • Clear • Collections</span>
+        <a class="chip" href="https://learn.microsoft.com/de-de/training/modules/perform-custom-updates-powerapps-canvas-app/" target="_blank" rel="noopener">MS Learn‑Modul ↗</a>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn" onclick="window.print()">🖨️ Drucken</button>
+      <button class="btn primary" onclick="downloadHTML()">⬇️ HTML herunterladen</button>
+    </div>
+  </header>
+
+  <section class="card">
+    <h2>Schnellübersicht</h2>
+    <div class="cols">
+      <div>
+        <h3>Erstellen</h3>
+<pre><code>Patch(DataSource,
+      Defaults(DataSource),
+      { Column1: Value1, Column2: Value2 })</code></pre>
+      </div>
+      <div>
+        <h3>Bearbeiten</h3>
+<pre><code>Patch(DataSource,
+      LookUp(DataSource, ID = 123),
+      { Column1: NewValue })</code></pre>
+      </div>
+    </div>
+    <div class="cols">
+      <div>
+        <h3>Upsert (falls vorhanden → ändern, sonst neu)</h3>
+<pre><code>With(
+  { rec: LookUp(DataSource, Key = keyVal) },
+  If(IsBlank(rec),
+     Patch(DataSource, Defaults(DataSource), { Key: keyVal, ... }),
+     Patch(DataSource, rec, { ... })
+  )
+)</code></pre>
+      </div>
+      <div>
+        <h3>Mehrere Sätze aktualisieren</h3>
+<pre><code>ForAll(
+  Filter(DataSource, Status = "Draft"),
+  Patch(DataSource, ThisRecord, { Status: "Submitted" })
+)</code></pre>
+      </div>
+    </div>
+    <div class="callout warn"><strong>Achtung Delegierung:</strong> Große Datenquellen (SharePoint/Dataverse/SQL) haben Delegierungsregeln. Verwenden Sie delegierbare Operatoren/Funktionen in <code>Filter</code>/<code>LookUp</code> (z. B. <code>StartsWith</code> statt <code>In</code>, wo möglich) oder passen Sie das Design an.</div>
+  </section>
+
+  <div class="grid">
+    <section class="card">
+      <h2>Patch – Muster</h2>
+      <h3>Wertequellen</h3>
+      <ul>
+        <li>Konstanten: <code>{ Status: "Pending" }</code></li>
+        <li>Variablen: <code>Set(varS, "Open"); { Status: varS }</code></li>
+        <li>Steuerelemente: <code>{ Qty: Value(txtQty.Text) }</code></li>
+        <li>Benutzerinfo/Formeln: <code>{ Owner: User().FullName, Timestamp: Now() }</code></li>
+      </ul>
+      <h3>Rückgabewert nutzen</h3>
+<pre><code>Set(recSaved,
+  Patch(Orders, Defaults(Orders), { Title: txtTitle.Text })
+);
+Notify($"Gespeichert: {recSaved.Title}");</code></pre>
+      <h3>Referenz auf Ziel</h3>
+<pre><code>Patch(Orders, LookUp(Orders, ID = gal.Selected.ID), { ... })
+// oder innerhalb von Galerie/ForAll
+Patch(Orders, ThisItem, { ... })</code></pre>
+    </section>
+
+    <section class="card">
+      <h2>Löschen – Muster</h2>
+      <h3>Einzelsatz</h3>
+<pre><code>Remove(Orders, gal.Selected)</code></pre>
+      <h3>Gefiltert</h3>
+<pre><code>RemoveIf(Orders, Status = "Obsolete")</code></pre>
+      <h3>Soft Delete (empfohlen)</h3>
+<pre><code>Patch(Orders, ThisItem, { IsDeleted: true, DeletedOn: Now() })</code></pre>
+      <div class="callout warn"><strong>Kein Undo:</strong> In Power Apps gibt es keinen Papierkorb. Absicherung durch Bestätigungsdialoge & Backups in der Datenquelle.</div>
+    </section>
+  </div>
+
+  <div class="grid">
+    <section class="card">
+      <h2>Sammlungen (Collections)</h2>
+      <h3>Basis</h3>
+<pre><code>ClearCollect(Cities,
+  {City:"Berlin", Country:"Germany"},
+  {City:"Paris", Country:"France"}
+)</code></pre>
+      <h3>Mit Datenquelle befüllen</h3>
+<pre><code>ClearCollect(locOrders, Filter(Orders, Status = "Open"))</code></pre>
+      <h3>Alle löschen</h3>
+<pre><code>Clear(locOrders)</code></pre>
+      <h3>Transformation</h3>
+<pre><code>ClearCollect(OrdersSlim,
+  AddColumns(
+    ShowColumns(Orders, "ID","Title","Status"),
+    "IsOld", DateDiff(CreatedOn, Today()) > 365
+  )
+)</code></pre>
+    </section>
+
+    <section class="card">
+      <h2>Fehlerbehandlung & Feedback</h2>
+      <h3>Fehler abfangen</h3>
+<pre><code>IfError(
+  Patch(Orders, Defaults(Orders), { Title: txtTitle.Text }),
+  Notify(ErrorInfo.Message, NotificationType.Error)
+)</code></pre>
+      <h3>Validierung</h3>
+<pre><code>If(
+  IsBlank(txtTitle.Text),
+  Notify("Titel ist erforderlich", NotificationType.Warning),
+  Submit()
+)</code></pre>
+      <h3>Bestätigungsdialog (Mini)</h3>
+<pre><code>// Button Löschen (OnSelect)
+UpdateContext({ askDel: true })
+
+// Dialog: Ja-Button (OnSelect)
+Remove(Orders, gal.Selected);
+UpdateContext({ askDel: false })</code></pre>
+    </section>
+  </div>
+
+  <div class="grid">
+    <section class="card">
+      <h2>Nützliche Helfer</h2>
+      <ul>
+        <li><strong>UpdateIf</strong>: <code>UpdateIf(Orders, Status="Draft", { Reviewer: User().FullName })</code></li>
+        <li><strong>With (Lesbarkeit)</strong>: <code>With({id: gal.Selected.ID}, Patch(Orders, LookUp(Orders, ID=id), {...}))</code></li>
+        <li><strong>Concurrent</strong>: mehrere unabhängige Aufrufe parallel ausführen.</li>
+        <li><strong>Konvertierungen</strong>: <code>Value()</code>, <code>Text()</code>, <code>DateValue()</code>, <code>Boolean()</code>.</li>
+        <li><strong>Variablen</strong>: <code>Set(varX, ...)</code> (global), <code>UpdateContext({locX: ...})</code> (Screen).</li>
+      </ul>
+      <div class="callout">Tipp: Nutzen Sie <code>//</code> für Kommentare in Formeln und formatieren Sie längere Ausdrücke mit Zeilenumbrüchen.</div>
+    </section>
+
+    <section class="card">
+      <h2>Bewährte Patterns</h2>
+      <ul>
+        <li><strong>Formularfrei speichern</strong>: Eingaben direkt via <code>Patch</code> schreiben.</li>
+        <li><strong>Galerie‑Bearbeitung</strong>: Eingabefelder im Template + <code>OnChange</code> → <code>Patch(ThisItem,...)</code>.</li>
+        <li><strong>Bulk‑Änderungen</strong>: <code>ForAll(Filter(...), Patch(...))</code> oder <code>UpdateIf</code>.</li>
+        <li><strong>Audit</strong>: Spalten <code>ModifiedBy</code>, <code>ModifiedOn</code> beim Patch setzen.</li>
+        <li><strong>Vermeide</strong>: <code>RemoveIf(DataSource, true)</code> in Produktion.</li>
+      </ul>
+    </section>
+  </div>
+
+  <section class="card links">
+    <h2>Direktlinks (MS Learn)</h2>
+    <a href="https://learn.microsoft.com/de-de/training/modules/perform-custom-updates-powerapps-canvas-app/1-more-than-forms" target="_blank" rel="noopener">1) Alternative zu Formularen ↗</a>
+    <a href="https://learn.microsoft.com/de-de/training/modules/perform-custom-updates-powerapps-canvas-app/2-patch-function" target="_blank" rel="noopener">2) Patch verwenden ↗</a>
+    <a href="https://learn.microsoft.com/de-de/training/modules/perform-custom-updates-powerapps-canvas-app/3-deleting-records" target="_blank" rel="noopener">3) Datensätze löschen ↗</a>
+    <a href="https://learn.microsoft.com/de-de/training/modules/perform-custom-updates-powerapps-canvas-app/4a-exercise-patch" target="_blank" rel="noopener">4) Übung: Patch ↗</a>
+    <a href="https://learn.microsoft.com/de-de/training/modules/perform-custom-updates-powerapps-canvas-app/4-knowledge-check" target="_blank" rel="noopener">5) Modulbewertung ↗</a>
+    <a href="https://learn.microsoft.com/de-de/training/modules/perform-custom-updates-powerapps-canvas-app/5-summary" target="_blank" rel="noopener">6) Zusammenfassung ↗</a>
+  </section>
+
+  <footer>
+    <div class="hr"></div>
+    <p>Dieses Cheat Sheet ergänzt das MS‑Learn‑Modul „Benutzerdefinierte Updates in einer Power Apps‑Canvas‑App“. Drucken oder per Button als HTML speichern.</p>
+  </footer>
+
+<script>
+  function downloadHTML(){
+    const blob = new Blob([document.documentElement.outerHTML], {type: 'text/html'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'powerapps-custom-updates-cheat-sheet.html';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  }
+</script>
+</body>
+</html>
